@@ -1,0 +1,28 @@
+.parallax {
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    background-color: black;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 20px;
+}
+
+p {
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
