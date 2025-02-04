@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+}
+
+.card {
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-family: Arial;
+}
+
+.title {
+    color: gray;
+    font-size: 18px;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+}
