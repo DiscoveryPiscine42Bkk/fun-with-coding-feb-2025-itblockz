@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #balloon {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="balloon" onclick="balloonClick()" onmouseleave="balloonMouseLeave()"></div>
+    <script>
+        let balloon = document.getElementById("balloon");
+        let colorList = ["red", "green", "blue"];
+        let colorIndex = 0;
+
+        function balloonClick() {
+            increaseSize(10);
+            if (balloon.offsetHeight > 420) {
+                balloon.style.width = "200px";
+                balloon.style.height = "200px";
+            }
+            changeColor();
+        }
+
+        function balloonMouseLeave() {
+            if (balloon.offsetHeight > 200) {
+                increaseSize(-5);
+                changeColor(reverse=true);
+            }
+        }
+
+        function increaseSize(amount) {
+            let currentWidth = balloon.offsetWidth;
+            let currentHeight = balloon.offsetHeight;
+
+            let newWidth = currentWidth + amount;
+            let newHeight = currentHeight + amount;
+
+            balloon.style.width = newWidth + "px";
+            balloon.style.height = newHeight + "px";
+        }
+
+        function changeColor(reverse = false) {
+            colorIndex = (colorIndex + (reverse ? -1 : 1) + 3) % colorList.length;
+            document.getElementById("balloon").style.backgroundColor = colorList[colorIndex]
+        }
+    </script>
+</body>
+</html>
