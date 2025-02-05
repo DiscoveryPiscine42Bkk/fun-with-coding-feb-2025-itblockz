@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="a" id="a" value="0">
+    <select name="oper" id="oper">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="number" name="b" id="b" value="0">
+    <button onclick="main()">Try me!</button>
+
+    <script>
+        setInterval(function() {
+            message = "Please, use me...";
+            console.log(message);
+            alert(message);
+        }, 30000);
+
+        function main() {
+            let oper = document.getElementById('oper').value;
+            let a = parseInt(document.getElementById('a').value);
+            let b = parseInt(document.getElementById('b').value);
+
+            if (!validateNonNegative(a, b) || !validateNotDivideByZero(oper, b)) {
+                return;
+            }
+
+            result = calculate(oper, a, b);
+            console.log(result);
+            alert(result);
+        }
+
+        function validateNonNegative(a, b) {
+            if (a < 0 || b < 0) {
+                message = "Error :(";
+                console.log(message);
+                alert(message);
+                return false;
+            }
+            return true;
+        }
+
+        function validateNotDivideByZero(oper, b) {
+            if ((oper == "/" || oper == "%") && b == 0) {
+                message = "It's over 9000!";
+                console.log(message);
+                alert(message);
+                return false;
+            }
+            return true;
+        }
+
+        function calculate(oper, a, b) {
+            switch (oper) {
+                case "+":
+                    return a + b;
+                case "-":
+                    return a - b;
+                case "*":
+                    return a * b;
+                case "/":
+                    return a / b;
+                case "%":
+                    return a % b;
+            }
+        }
+    </script>
+</body>
+</html>
