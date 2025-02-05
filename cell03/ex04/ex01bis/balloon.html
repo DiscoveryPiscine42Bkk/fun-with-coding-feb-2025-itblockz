@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #balloon {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        let colorList = ["red", "green", "blue"];
+        let colorIndex = 0;
+
+        $(document).ready(function () {
+            $("#balloon").click(function () {
+                balloonClick();
+            }).mouseleave(function () {
+                balloonMouseLeave();
+            });
+        });
+
+        function balloonClick() {
+            increaseSize(10);
+            if ($("#balloon").height() > 420) {
+                $("#balloon")
+                .css("width", "200px")
+                .css("height", "200px");
+            }
+            changeColor();
+        }
+
+        function balloonMouseLeave() {
+            if ($("#balloon").height() > 200) {
+                increaseSize(-5);
+                changeColor(reverse=true);
+            }
+        }
+
+        function increaseSize(amount) {
+            let currentWidth = $("#balloon").width();
+            let currentHeight = $("#balloon").height();
+
+            let newWidth = currentWidth + amount;
+            let newHeight = currentHeight + amount;
+
+            $("#balloon")
+                .css("width", newWidth + "px")
+                .css("height", newHeight + "px");
+        }
+
+        function changeColor(reverse = false) {
+            colorIndex = (colorIndex + (reverse ? -1 : 1) + colorList.length) % colorList.length;
+            $("#balloon").css("backgroundColor", colorList[colorIndex]);
+        }
+    </script>
+</head>
+<body>
+    <div id="balloon"></div>
+</body>
+</html>
