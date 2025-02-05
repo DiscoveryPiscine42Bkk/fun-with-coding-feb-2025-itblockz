@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                main();
+            });
+
+            setInterval(function() {
+                message = "Please, use me...";
+                console.log(message);
+                alert(message);
+            }, 30000);
+        });
+
+        function main() {
+            let oper = $("#oper").val();
+            let a = parseInt($("#a").val());
+            let b = parseInt($("#b").val());
+
+            if (!validateNumber(a, b) || !validateNonNegative(a, b) || !validateNotDivideByZero(oper, b)) {
+                return;
+            }
+
+            result = calculate(oper, a, b);
+            console.log(result);
+            alert(result);
+        }
+
+        function validateNumber(a, b) {
+            if (isNaN(a) || isNaN(b)) {
+                message = "Error :(";
+                console.log(message);
+                alert(message);
+                return false;
+            }
+            return true;
+        }
+
+        function validateNonNegative(a, b) {
+            if (a < 0 || b < 0) {
+                message = "Error :(";
+                console.log(message);
+                alert(message);
+                return false;
+            }
+            return true;
+        }
+
+        function validateNotDivideByZero(oper, b) {
+            if ((oper == "/" || oper == "%") && b == 0) {
+                message = "It's over 9000!";
+                console.log(message);
+                alert(message);
+                return false;
+            }
+            return true;
+        }
+
+        function calculate(oper, a, b) {
+            switch (oper) {
+                case "+":
+                    return a + b;
+                case "-":
+                    return a - b;
+                case "*":
+                    return a * b;
+                case "/":
+                    return a / b;
+                case "%":
+                    return a % b;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="a" id="a">
+    <select name="oper" id="oper">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" name="b" id="b">
+    <button>Try me!</button>
+</body>
+</html>
